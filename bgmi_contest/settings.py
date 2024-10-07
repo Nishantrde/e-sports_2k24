@@ -90,8 +90,8 @@ WSGI_APPLICATION = 'bgmi_contest.wsgi.application'
 # Database configuration
 DATABASES = {
     'default': dj_database_url.parse(
-        os.environ.get('DB')
-            )
+        "postgresql://bgmi_contest_user:HZjdgR5vEplIbgCJFDEmfgeeCPogQuHl@dpg-cs15kubtq21c73eloq80-a.oregon-postgres.render.com/bgmi_contest"
+    )
 }
 
 
