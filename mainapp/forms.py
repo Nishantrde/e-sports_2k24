@@ -19,4 +19,8 @@ class TeamForm(forms.ModelForm):
         if BGMI_Team.objects.filter(ph_no=ph_no).exists():
             raise forms.ValidationError(f"The phone number '{ph_no}' is already registered.")
 
+        # Check if phone number is exactly 10 digits long and numeric
+        if not ph_no.isdigit() or len(ph_no) != 10:
+            raise forms.ValidationError("The phone number must be 10 digits long and contain only numeric values.")
+
         return cleaned_data
