@@ -19,6 +19,4 @@ def index(request):
 
     return render(request, 'index.html', {'form': form, 'user_email': user_email})
 
-def log_in(request):
-    return render(request, "login.html")
 
