@@ -43,14 +43,6 @@ INSTALLED_APPS = [
     'mainapp',
 ]
 
-GOOGLE_SSO_CLIENT_ID = os.getenv('GOOGLE_SSO_CLIENT_ID', '')
-GOOGLE_SSO_PROJECT_ID = os.getenv('GOOGLE_SSO_PROJECT_ID', '')
-GOOGLE_SSO_CLIENT_SECRET = os.getenv('GOOGLE_SSO_CLIENT_SECRET', '')
-
-
-GOOGLE_SSO_ALLOWABLE_DOMAINS = ["gmail.com"]
-
-GOOGLE_SSO_NEXT_URL = 'mainapp:log'
 
 
 
