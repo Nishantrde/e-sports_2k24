@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BGMI Esports Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}
+
+    <style>
+        body {
+            background-image: url("{% static 'img/bg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes buttonGlow {
+            0% {
+                box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+            }
+        }
+
+        .form-container {
+            animation: fadeIn 1.2s ease-in-out;
+            max-width: 600px;
+            padding: 20px 30px;
+            background: rgba(20, 20, 20, 0.85);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-container.fade-out {
+            animation: fadeOut 0.8s ease-in-out forwards;
+        }
+
+        .glow-btn {
+            animation: buttonGlow 1.5s infinite alternate;
+        }
+
+        /* Fix for input visibility */
+        input, textarea {
+            background-color: #2d2d2d;
+            color: white;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            width: 100%;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #ff4747;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 14px 0;
+            font-size: 1.2rem;
+            border-radius: 8px;
+        }
+
+        /* Google button styling */
+        .google-login-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background-color: white;
+            padding: 14px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .google-login-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .google-btn-logo img {
+            width: 20px;
+            margin-right: 12px;
+        }
+
+        .google-btn-label {
+            color: black;
+            font-weight: bold;
+        }
+
+        .login-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="bg-black bg-opacity-80 text-white flex items-center justify-center min-h-screen">
+    <div class="form-container bg-gray-900 bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-lg transform transition duration-500 hover:scale-105">
+        <h1 class="text-4xl font-extrabold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-pulse flex items-center justify-center space-x-3">
+            <img src="{% static 'img/bgmi.png' %}" alt="BGMI Logo" class="w-20 h-20">
+            E-sports
+        </h1>
+
+        <!-- Google Login Button -->
+        <div class="login-box">
+            <div class="google-login-btn">
+                
+                <div class="google-btn-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1280px-Google_%22G%22_logo.svg.png" alt="Google Sign-in">
+                </div>
+                
+            <a class="btn-content" href="/google_sso/login/" role="button">
+                <div class="google-btn-label">Sign in with Google</div>
+            </a>
+
+            </div>
+        </div>
+
+        <!-- Form End -->
+    </div>
+
+    <script>
+        // Simulate fade out after form submission
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function() {
+            const formContainer = document.querySelector('.form-container');
+            formContainer.classList.add('fade-out');
+        });
+    </script>
+</body>
+</html>

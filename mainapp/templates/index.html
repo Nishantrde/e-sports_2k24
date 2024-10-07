@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BGMI Esports Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}
+
+    <style>
+        body {
+            background-image: url("{% static 'img/bg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes buttonGlow {
+            0% {
+                box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+            }
+        }
+
+        .form-container {
+            animation: fadeIn 1.2s ease-in-out;
+            max-width: 600px; /* Increased width */
+            padding: 20px 30px; /* More padding */
+            background: rgba(20, 20, 20, 0.85);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-container.fade-out {
+            animation: fadeOut 0.8s ease-in-out forwards;
+        }
+
+        .glow-btn {
+            animation: buttonGlow 1.5s infinite alternate;
+        }
+
+        /* Fix for input visibility */
+        input, textarea {
+            background-color: #2d2d2d; /* Dark background for input */
+            color: white; /* Ensures text is visible */
+            padding: 12px; /* Larger padding for better spacing */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            width: 100%; /* Full width */
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #ff4747;
+        }
+
+        h1 {
+            font-size: 2.5rem; /* Slightly larger font size */
+            font-weight: bold;
+        }
+
+        button {
+            padding: 14px 0; /* More padding for the button */
+            font-size: 1.2rem; /* Larger button text */
+            border-radius: 8px;
+        }
+    </style>
+
+</head>
+
+<body class="bg-black bg-opacity-80 text-white flex items-center justify-center min-h-screen">
+    <div class="form-container bg-gray-900 bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-lg transform transition duration-500 hover:scale-105">
+        <h1 class="text-4xl font-extrabold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-pulse flex items-center justify-center space-x-3">
+            <img src="{% static 'img/bgmi.png' %}" alt="BGMI Logo" class="w-20 h-20">
+            E-sports Team
+        </h1>
+        <!-- Form Start -->
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+            <div class="space-y-4">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-5 rounded-lg shadow-lg transition duration-300 ease-in-out glow-btn">
+                Submit
+            </button>
+        </form>
+        <input type="hidden" name="user" value="{{user}}" id="user" >
+        <!-- Tournament Details -->
+        <div class="text-center mt-6">
+            <p class="text-sm text-gray-400">The tournament will start on 9th October (Wednesday) and the finale will be on 11th October (Friday).</p>
+        </div>
+    </div>
+
+    <script>
+        // Simulate fade out after form submission
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function() {
+            const formContainer = document.querySelector('.form-container');
+            formContainer.classList.add('fade-out');
+        });
+    </script>
+</body>
+</html>
