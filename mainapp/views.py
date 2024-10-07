@@ -11,7 +11,7 @@ def index(request):
         form = TeamForm(request.POST)
         if form.is_valid():
             team = form.save(commit=False)  # Save form without committing
-            team.e_mail = user_email  # Assign the user's email to the e_mail field
+            # team.e_mail = user_email  # Assign the user's email to the e_mail field
             team.save()  # Now save the team
             return redirect('/')
     else:
