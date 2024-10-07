@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You for Registering</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}
+
+    <style>
+        body {
+            background-image: url("{% static 'img/bg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .form-container {
+            animation: fadeIn 1.2s ease-in-out;
+            max-width: 600px;
+            padding: 20px 30px;
+            background: rgba(20, 20, 20, 0.85);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 1.25rem;
+            margin: 20px 0;
+        }
+
+        .thanks-message {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+        }
+
+        /* Confetti Effect Styles */
+        .confetti-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 16px;
+            background-color: red;
+            opacity: 0.8;
+            animation: fall 4s infinite ease-in-out;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .confetti:nth-child(odd) {
+            background-color: blue;
+        }
+        .confetti:nth-child(even) {
+            background-color: purple;
+        }
+    </style>
+</head>
+
+<body class="bg-black bg-opacity-80 text-white flex items-center justify-center min-h-screen">
+    <!-- Confetti Effect Container -->
+    <div class="confetti-container" id="confetti-container"></div>
+
+    <div class="form-container bg-gray-900 bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-lg transform transition duration-500 hover:scale-105">
+        <h1 class="text-4xl font-extrabold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-pulse">
+            <img src="{% static 'img/bgmi.png' %}" alt="BGMI Logo" class="logo mx-auto mb-4">
+            {{team}} Thank You for Registering!
+        </h1>
+
+        <p class="thanks-message text-lg text-gray-300">
+            Your registration has been successfully submitted for the BGMI E-sports Tournament.
+        </p>
+
+        <p class="text-gray-400 mt-6">Stay tuned! The tournament will start on <strong>9th October (Wednesday)</strong> and the finale will be on <strong>11th October (Friday)</strong>.</p>
+        
+        <p class="mt-4 text-lg">Good luck and see you on the battlefield!</p>
+    </div>
+
+    <script>
+        // JavaScript for Confetti Effect
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti-container');
+            const numberOfConfetti = 100;
+
+            for (let i = 0; i < numberOfConfetti; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.width = Math.random() * 10 + 'px';
+                confetti.style.height = Math.random() * 20 + 'px';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        // Call the function on page load
+        window.onload = createConfetti;
+    </script>
+</body>
+</html>

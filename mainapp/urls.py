@@ -1,10 +1,9 @@
 from django.urls import path
-from .views import *
-    
-app_name = 'mainapp'
+from .views import *   
 
 urlpatterns = [
-    path('',index, name="log"),
+    path('', index, name="log"),
+    path('thanks/<str:team>', thanks)
 ]
 
 
